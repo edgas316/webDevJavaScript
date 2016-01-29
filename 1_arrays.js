@@ -1,3 +1,42 @@
+// === Conversion Methods === \\
+// toString()
+// toLocalString()
+// valueOf()
+
+// === Queue Methods === \\
+// shift() // deletes the first item in array
+// unshift() // pushes red to the beginning of the array
+
+// === Reordering Methods === \\
+// reverce()
+// sort()
+
+// === Manipulation Methods === \\
+// slice()
+// splice()
+/* deletion     ==  splice(0, 2) == deletes the first 2 items
+ * insertion    ==  splice(2, 0, "red", "green") inserts the string into the array at position 2
+ * replacement  ==  splice(2, 1, "red", "green") deletes one item at position 2 and then inserts the strings into the array at position 2
+ * First number is Where to start secont number How Many items to delete...
+*/
+
+// === Location Methods === \\
+// array.indexOf(item, start)        starts searching from the front of the array to the back/end
+// array.lastIndexOf(item, start)   starts from the last item in the array and continues to the front.
+
+// === Iterative Methodes === \\
+// every()   — Runs the given function on every item in the array and returns true if the function returns true for every item.
+// some()    — Runs the given function on every item in the array and returns true if the function returns true for any one item.
+// filter()  — Runs the given function on every item in the array and returns an array of all items for which the function returns true.
+// map()     — Runs the given function on every item in the array and returns the result of each function call in an array.
+// forEach() — Runs the given function on every item in the array. This method has no return value.
+
+// === Reduction Method === \\
+// reduce()      starts at the first item and traveling toward the last
+// reduceRight() starts at the last item and travels toward the first.
+
+
+//=============================================================================
 // === Arrey manipulation === \\
 var color = ["red", "blue", "black"]
 color[color.length] = "brown" // this adds "brown" to the and of the array
@@ -6,7 +45,7 @@ console.log(color)// ["red", "blue", "black", "brown", "new Color"]
 color[99] = "far color in the end"// adds a color in the position 99...!!!
 console.log(color.length)// 100
 console.log(color)// ["red", "blue", "black", "brown", "new Color", 99: "far color in the end"]
-//color[4294967294] = "far color in the end"
+//color[4294967294] = "this is really the last color...;)"
 console.log(color)// ["red", "blue", "black", "brown", "new Color", 99: "far color in the end", 4294967294: "far color in the end"]
 console.log(color.length)// 4,294,967,295
 
@@ -32,6 +71,8 @@ console.log(item)// yellow
 console.log(color.length)// 101
 
 // === Queue Methods === \\
+// shift() // deletes the first item in array
+// unshift() // pushes red to the beginning of the array
 var shiftArr = color.shift()// deletes the first item in array
 console.log(shiftArr)// red
 console.log(color.length)// 100
@@ -75,8 +116,8 @@ color4 = color.slice(1,4)// creates an array starting from element 1 till elemen
 // === Location Methods === \\
 // array.indexOf(item, start)        starts searching from the front of the array to the back/end
 // array.lastIndexOf(item, start)   starts from the last item in the array and continues to the front.
-console.log(color.indexOf("new Color", 3))// 4 ... Gives -1 if can't find
-console.log(color.lastIndexOf("new Color", 2))// -1 ... Gives -1 if can't find
+console.log(color.indexOf("new Color", 3))      // 4 ... Gives -1 if can't find
+console.log(color.lastIndexOf("new Color", 2))  // -1... Gives -1 if can't find
 
 // === Iterative Methodes === \\
 // every()   — Runs the given function on every item in the array and returns true if the function returns true for every item.
@@ -101,6 +142,7 @@ var filterResult = numbers.filter(function(item, index, array){
     return (item > 6 && item < 11)
 })
 console.log(filterResult)// [7, 8, 9, 10]
+console.log(Array.isArray(filterResult))// true
 
 var mapResult = numbers.map(function(item, index, array){
     return item *2
@@ -129,76 +171,3 @@ var sum2 = numbers.reduceRight(function(prev, next, index, array){
     return prev + next
 })
 console.log(sum2)// 105
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
