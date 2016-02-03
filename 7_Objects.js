@@ -98,3 +98,81 @@ var newPersonProto = new PersonProto()
 console.log(newPersonProto.sayInfo())
 console.log(Object.getPrototypeOf(newPersonProto))// PersonProto {name: "Edwin", age: 36, job: "Software Developer"}
 console.log(PersonProto.prototype.isPrototypeOf(newPersonProto))// true
+
+// Prototypes and in Operatonr
+console.log("name" in newPersonProto)// true
+// in and hasOwnProperty conmbination
+function hasPrototypeProeprty(object, name){
+    return !object.hasOwnProperty(name) && (name in object)
+}
+console.log(hasPrototypeProeprty(newPersonProto, "name"))// true
+newPersonProto.name = "Greg"
+console.log(hasPrototypeProeprty(newPersonProto, "name"))// false
+var o = {
+    toString:function(){
+        return "My Object"
+    }
+}
+for(var prop in o){
+    if(prop == "toString"){
+        console.log("found " + prop + " property in " + o)
+    }
+}
+
+// Object.keys() Method
+var keys = Object.keys(PersonProto.prototype)
+console.log(keys)
+
+var p1 = new PersonProto()
+console.log(Object.keys(p1))// []
+console.log(Object.getOwnPropertyNames(PersonProto.prototype))// ["constructor", "name", "age", "job", "sayInfo"]
+
+// Better way to rceate prototype...
+function Friend(){}
+
+Friend.prototype = {
+    constructor:Friend,
+    name:"Edwin",
+    age:"Young",
+    job:"Software Developer",
+    sayInfo:function(){
+        return this.name +" is a vary effisient " + this.job
+    }
+}
+console.log(Object.keys(Friend.prototype).length) // 5
+
+Object.defineProperty(Friend.prototype, "constructor", {
+    enumerable:false,
+    value:Friend
+})
+console.log(Object.keys(Friend.prototype).length)// 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
