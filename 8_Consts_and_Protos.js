@@ -69,8 +69,42 @@ parazFriend.sayName()
 // This pattern allows you to create constructors for objects that may not be possible otherwise. For
 // example, you may want to create a special array that has an extra method. Since you don’t have
 // direct access to the Array constructor, this pattern works:
+function SpecialArray(/*arguments*/){
+    //create the array
+    var values = new Array()
+    
+    //add the values
+    values.push.apply(values, arguments)
+    
+    //assign the method
+    values.toPipedString = function(){
+        return this.join(" | ")
+    }
+    
+    //return it
+    return values
+}
+var colors = new SpecialArray("red", "blue", "green")
+console.log(colors.toPipedString())// red | blue | green
+console.log(colors)// ["red", "blue", "green"]
 
+// === Durable Constructor Pattern === \\
+function Durable(name, age, job){
+    //create the object to return
+    var o = new Object()
+    //optional: define private variables/functions here
+    
+    //attach methods
+    o.sayName = function(){
+        console.log(name)
+    }
+    //return the object
+    return o
+}
 
+var dur = new Durable("Edwin", 29, "Web developer")
+dur.sayName()// Edwin
+console.log(dur.name)// undefined
 
 
 
