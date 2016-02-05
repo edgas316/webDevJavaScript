@@ -174,11 +174,10 @@ console.log(anotherPerson)
 // === Parasitic Combination Inheritance === \\
 
 function inheritPrototype(subType, superType){
-    var proto = Object.create(superType.prototype)  // create object
-    proto.constructor = subType                     // augment object
-    subType.prototype = proto                       // assign object
+    var copyOfSuperType = Object.create(superType.prototype)  // create object
+    copyOfSuperType.constructor = subType                     // augment object
+    subType.prototype = copyOfSuperType                       // assign object
 }
-
 
 function SuperParazCombo(name){
     this.name = name
@@ -209,7 +208,7 @@ exper.colors.push("black")
 var exper1 = new SubParazCombo()
 console.log(exper1.colors)
 console.log(exper.colors)
-
+console.log(Object.prototype.isPrototypeOf(exper))
 
 
 

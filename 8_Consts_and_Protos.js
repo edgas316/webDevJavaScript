@@ -34,10 +34,10 @@ function Dinamic(name, age, job){
     this.age = age
     this.job = job
     
-    //mathods
+    //methods
     if(typeof this.sayName != "function"){
         Dinamic.prototype.sayName = function(){
-            console.log( this.name)
+            console.log(this.name)
         }
     }
 }
