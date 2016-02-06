@@ -35,8 +35,11 @@ var data = [{name:"Edwin", age:36, id:1}, {name:"Marine", age:29, id:2}, {name:"
 data.sort(createComparisonFunction("age"))
 console.log(data)
 
+console.log(createComparisonFunction)// function createComparisonFunction(...){...}
 var compareNames  = createComparisonFunction("name")
+console.log(compareNames)// function(obj1, obj2){...}
 var result        = compareNames({name:"Edwin"}, {name:"Marine"})
+console.log(result)// -1
 compareNames      = null
 
 // ========================================
@@ -47,10 +50,12 @@ function celebrityName(firstName){
     }
     return fullName
 }
+console.log(celebrityName)// function celebrityName(...){...}
 var mjName = celebrityName("Michael")
+console.log(mjName)// function fullName(...){...}
 var fullname = mjName("Jackson")
-console.log(fullname)
-console.log(mjName)
+console.log(fullname)// This celebrity is Michael Jackson
+
 // =======================================
 function celebrityID(){
     var celebrityID = 999
@@ -73,6 +78,7 @@ function celebrityIDCreator(theCelebrities){
     var i;
     var uniqueID = 100
     for(i=0; i<theCelebrities.length; i++){
+        console.log(i)
         theCelebrities[i]["id"] = function(j){
             return function(){
                 return uniqueID + j
@@ -84,7 +90,131 @@ function celebrityIDCreator(theCelebrities){
 var actionCelebs = [{name:"Stallone", id:0}, {name:"Cruise", id:0}, {name:"Willis", id:0}]
 
 var createIdForActionCelebs = celebrityIDCreator(actionCelebs)
+console.log(createIdForActionCelebs)// [Object, Object, Object]
 var stalloneID = createIdForActionCelebs[0]
+console.log(stalloneID)// Object {name: "Stallone", id: 100}
 console.log(stalloneID.id)// 100
 var cruiseID = createIdForActionCelebs[1];
+console.log(cruiseID)// Object {name: "Cruise", id: 101}
 console.log(cruiseID.id)// 101
+
+// Closures and variables
+
+function createFunctions(){
+    var result = new Array()// result = [function function,...]; result = Array[10]
+    for (var i = 0; i<10; i++){// i=10
+        result[i] = function(){// result = Array[10]
+            return i
+        }
+    }
+    return result
+}
+console.log(createFunctions())// function (){return i}
+var func = createFunctions()
+console.log(func)
+
+function createFunction1(){
+    var result = new Array()// result = []; result = [function function, function function,...]
+    for (var i = 0; i<10; i++){ // i=0
+        result[i] = function(num){ // num=0-10; result = [function function, function function,...]
+            return function(){
+                return num //num = 0-10
+            }
+        }(i)
+    }
+    return result
+}
+console.log(createFunction1())// function (){return num}
+var func1 = createFunction1()
+console.log(func1)
+var cel = func1[1]
+console.log(cel)
+var ex = cel(1)
+console.log(ex)
+
+// Preventing memory leaks...
+// assigning handler to any element...
+function assignHandler(element){
+    var element = document.getElementById(element)
+    var id = element.id
+    element.onclick = function(){
+        alert(id)
+    }
+    element = null
+}
+assignHandler("newId")
+
+// Mimicking block scope
+function outputNumbers(count){
+    (function(){
+        for(var i =0; i<count; i++){
+            console.log(i)
+        }
+    })()
+//    console.log(i)// Error... i is not defined... because it is destroed as soon as loop ends...
+};
+outputNumbers(5);
+
+(function(){
+    var now = new Date()
+    if(now.getMonth() === 1 && now.getDate() === 5){
+        console.log("Happy Friday!!!")
+    }
+})()
+
+// Private Variables
+function MyObject(){
+    var privateVariable = 10
+    function privateFunction(){
+        return false
+    }
+    
+    // privileged method
+    this.publicMethod = function(){
+        privateVariable++
+        return privateFunction()
+    }
+};
+//======================
+function Person(name){
+    this.getName = function(){
+        return name
+    }
+    this.setName = function(value){
+        name = value
+    }
+}
+var person = new Person("Edwin")
+console.log(person.getName())
+person.setName("Greg")
+console.log(person.getName())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
