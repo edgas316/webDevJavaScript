@@ -7,10 +7,11 @@ var factorial = (function f(num){
     }else{
         return num * f(num-1)
     }
-})
-var anotherFactorial = factorial
-factorial = null
-console.log(anotherFactorial(5))// error!
+});
+var anotherFactorial = factorial;
+//console.log(anotherFactorial(5))
+factorial = null;
+console.log(anotherFactorial(5));// error!
 
 // === Closures === \\
 // The terms anonymous functions and closures are often incorrectly used interchangeably. Closures
@@ -99,7 +100,6 @@ console.log(cruiseID)// Object {name: "Cruise", id: 101}
 console.log(cruiseID.id)// 101
 
 // Closures and variables
-
 function createFunctions(){
     var result = new Array()// result = [function function,...]; result = Array[10]
     for (var i = 0; i<10; i++){// i=10
@@ -160,7 +160,7 @@ outputNumbers(5);
     if(now.getMonth() === 1 && now.getDate() === 5){
         console.log("Happy Friday!!!")
     }
-})()
+})();
 
 // Private Variables
 function MyObject(){
@@ -175,6 +175,9 @@ function MyObject(){
         return privateFunction()
     }
 };
+var meth = new MyObject()
+console.log(meth.publicMethod())// false
+
 //======================
 function Person(name){
     this.getName = function(){
@@ -187,13 +190,118 @@ function Person(name){
 var person = new Person("Edwin")
 console.log(person.getName())
 person.setName("Greg")
-console.log(person.getName())
+console.log(person.getName());
+
+// Static Private Variables
+(function(){
+    var priveVar = 10
+    
+    function priveFunc(){
+        return false
+    }
+    
+    //constructor
+    MyObj = function(){}
+    
+    //public and privileged methods
+    MyObj.prototype.publicMethod = function(){
+        priveVar++
+        return priveFunc()
+    }
+})();
+
+var newObj = new MyObj()
+console.log(newObj);
+
+(function(){
+    var name = ""
+    PersonStat = function(value){
+        name = value
+    }
+    
+    PersonStat.prototype.getName = function(){
+        return name
+    }
+    
+    PersonStat.prototype.setName = function(value){
+        name = value
+    }
+})();
+
+var pers1 = new PersonStat("Edwin")
+console.log(pers1.getName())
+pers1.setName("Marine")
+console.log(pers1.getName())
+
+var pers2 = new PersonStat("David")
+console.log(pers2.getName())
+console.log(pers1.getName())
 
 
+// === Module Pattern === \\
+//var singleton = {
+//    name:value,
+//    method:function(){
+//        // method code here
+//    }
+//};
 
+var singleton2 = function(){
+    //private variables and fcuntions
+    var privateVar = 10
+    function privateFunc(){
+        return false
+    }
+    
+    // privileged/public methods and properties
+    return{
+        publicProperty:true,
+        publicMethod:function(){
+            privateVar++
+            return privateFunc()
+        }
+    }
+}();
+//===============================================
+function BaseComponent(){}
+var application = function(){
+    var components = new Array();
+    components.push(new BaseComponent());
+    
+    return {
+        getComponent:function(){
+            return components.length
+        },
+        registerComponent: function(component){
+            if(typeof component == "object"){
+                component.push(component)
+            }
+        }
+    };
+}();
+console.log(application)
 
+// Module Augmentation pattern
+var singletonAugment = function(){
+    var privV = 10
+    function privF(){
+        return false
+    }
+    function CustomType(){}
+    var object = new CustomType()
+    
+    object.publProp = true
+    
+    object.publicMethod = function(){
+        privV++
+        return privF()
+    }
+    
+    return object
+}();
 
-
+var newCust
+console.log(singletonAugment)
 
 
 
