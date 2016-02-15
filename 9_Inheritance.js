@@ -1,3 +1,5 @@
+// === Inheritance is a setting up a prototypal chane of the objects === \\
+
 // === Prototype chaining === \\
 function SuperType(){
     this.property = true 
