@@ -201,14 +201,14 @@ SubParazCombo.prototype.sayAge = function(){
 
 var exper = new SubParazCombo("Edwin", 29)
 
-exper.sayAge()
-console.log(exper.name)
-console.log(exper)
-exper.colors.push("black")
+exper.sayAge()// 29
+console.log(exper.name)// Edwin
+console.log(exper)// SubParazCombo {name: "Edwin", colors: Array[3], age: 29}
+exper.colors.push("black")// 
 var exper1 = new SubParazCombo()
-console.log(exper1.colors)
-console.log(exper.colors)
-console.log(Object.prototype.isPrototypeOf(exper))
+console.log(exper1.colors)// ["red", "blue", "green"]
+console.log(exper.colors)// ["red", "blue", "green", "black"]
+console.log(Object.prototype.isPrototypeOf(exper))// true
 
 
 
