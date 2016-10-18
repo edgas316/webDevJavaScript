@@ -79,3 +79,37 @@ function inner(){
     console.log(arguments.callee.caller)// // function outer(){inner()}
 }
 outer()
+
+
+// Callback Functions
+function getUserInput(firstName, lastName, gender, callback){
+    var fullName = firstName+" "+lastName
+    if(typeof callback === 'function'){
+        callback(fullName, gender)
+    }
+}
+
+function genericPoemMaker(name, gender){
+    console.log(name + " is finer than fine wine.");
+    console.log("Altruistic and noble for the modern time.");
+    console.log("Always admirably adorned with the latest style.");
+    console.log("A " + gender + " of unfortunate tragedies who still manages a perpetual smile");
+}
+getUserInput("Michael", "Fassbender", "Man", genericPoemMaker);
+
+function greetUser(customerName, sex){
+    var salutation = sex && sex === "Man"?"Mr":"Ms"
+    console.log("Hello, "+salutation+" "+customerName)
+}
+getUserInput("Bill", "Gates","Man",greetUser)
+
+//=============================================
+//promice function
+function asyncRequest() {
+  // your code here
+  return Promise(
+    resolve("OK"))
+  
+  
+}
+

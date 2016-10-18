@@ -127,7 +127,7 @@ var p1 = new PersonProto()
 console.log(Object.keys(p1))// []
 console.log(Object.getOwnPropertyNames(PersonProto.prototype))// ["constructor", "name", "age", "job", "sayInfo"]
 
-// Better way to rceate prototype...
+// Better way to create prototype...
 function Friend(){}
 
 Friend.prototype = {
