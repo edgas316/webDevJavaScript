@@ -138,9 +138,10 @@ function validateMessage(lower, upper, input){
 
 function isPalindrom(str){
     var string = str.toLowerCase().replace(/[^a-zA-Z0-9]+/g,'')
-    var len = Math.floor(str.length/2)
+    var len = Math.floor(string.length/2)
     for(var i=0; i<len; i++)
         if(string[i] !== string[string.length - i-1])
             return false
     return true    
 }
+

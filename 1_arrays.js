@@ -81,9 +81,10 @@ console.log(color.indexOf("new Color", 3))      // 4 ... Gives -1 if can't find
 console.log(color.lastIndexOf("new Color", 2))  // -1... Gives -1 if can't find
 
 // === Iterative Methodes === \\
-// every()   — Runs the given function on every item in the array and returns true if the function returns true for every item.
-// some()    — Runs the given function on every item in the array and returns true if the function returns true for any one item.
-// filter()  — Runs the given function on every item in the array and returns an array of all items for which the function returns true.
+/* every()   —  Runs the given function on every item in the array and returns true if the function returns true for every item.*/
+/* some()    —  Runs the given function on every item in the array and returns true if the function returns true for any one item.*/
+/* filter()  —  Runs the given function on every item in the array and returns an array of all items for which the function returns true. 
+                the function returns a new array consisting of those elements that satisfy the Boolean function. */
 // map()     — Runs the given function on every item in the array and returns the result of each function call in an array.
 // forEach() — Runs the given function on every item in the array. This method has no return value.
 
@@ -132,3 +133,109 @@ var sum2 = numbers.reduceRight(function(prev, next, index, array){
     return prev + next
 })
 console.log(sum2)// 105
+
+// or
+function sumUp(p,n){
+    if(isNaN(p) && isNaN(n))
+        return p + " " + n
+    return p+n
+}
+
+var suumedUp = numbers.reduce(sumUp) // 105
+// use to concatenate to string string
+var words = ['the','quick','brouwn','fox']
+var sentance = words.reduce(sumUp)
+
+
+//============================================================================
+//============================================================================
+// Arrays
+// Deep copy 
+var arr = []
+for(var i = 0; i<100; ++i){
+    arr[i] = i+1
+}
+
+function arrDeepCopy(a,b){
+    for(var i = 0; i<a.length; ++i){
+        b[i] = a[i]
+    }
+}
+
+var arrCopy = []
+arrDeepCopy(arr, arrCopy)
+arr[0] = 400
+console.log(arrCopy[0])
+
+// Acessor Functions
+var names = ["David", "Cynthia", "Raymond", "Clayton", "Jennifer"]
+var name = "David"
+
+function findItemInArray(item, array){
+    var position = array.indexOf(item)
+    if(position >=0){
+        console.log("Found " +item+" at position " + position)
+    }else{
+        console.log(item + " not found in the array")
+    }
+}
+
+findItemInArray(name, names) // Found David at position 0
+
+// Adding Element to an Array
+// push() - adds element to the end of the array
+// unshift() - adds element to the beginning of the array
+names.unshift(1,2,3,4,5) // you can add as one as well as myltiple elements to the beginning of the array
+// also you can use "length" property to add element to the array
+names[names.length] = 456 // this will add "456" at the end of the array
+
+// Removing elements from an Array
+names.pop() // removes from the end
+names.shift() // removes from the beginning
+names.splice(2,0,"Edwin","Marine") // will incert two elements in hte middle at position 2 will delete 0 elements
+names.splice(2,2) // Will remove two elements at position 2
+
+
+// Creating Two-Dementional Array
+Array.matrix = function(numrows, numcols, initial){
+    var arr = []
+    for(var i = 0; i < numrows; ++i){
+        var colls = []
+        for(var j = 0; j < numcols; ++j){
+            colls[j] = initial
+        }
+        arr[i] = colls
+    }
+    return arr
+}
+
+var multiDementionalArray = Array.matrix(5,3,{name:"", value:""}) // this will create array of 5 arrays with 3 objects in each of them
+/*[
+    [{name:"", value:""},{name:"", value:""},{name:"", value:""}],
+    [{name:"", value:""},{name:"", value:""},{name:"", value:""}],
+    [{name:"", value:""},{name:"", value:""},{name:"", value:""}],
+    [{name:"", value:""},{name:"", value:""},{name:"", value:""}],
+    [{name:"", value:""},{name:"", value:""},{name:"", value:""}],
+]*/
+
+// Processing Two-Dementional Array
+var multArr = []
+arrDeepCopy(multiDementionalArray, multArr)
+var total = 0;
+var average = 0.0
+var grades = [[89, 77, 78],[76, 82, 81],[91, 94, 89]];
+
+function findAverage(arr, total, average){
+    for(var row = 0; row < arr.length; ++row){
+        for(var col = 0; col < arr[row].length; ++col){
+            total += arr[row][col]
+        }
+        average = total / arr[row].length
+        console.log('Student ' + parseInt(row+1) + " average " + average.toFixed(2))
+        total = 0
+        average = 0.0
+    }
+}
+
+findAverage(grades, total, average)
+
