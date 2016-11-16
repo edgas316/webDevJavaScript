@@ -7,7 +7,7 @@ app.factory('dataService', function($http){
 		then(function successCallback(response){
 			success(response)
 		},
-		function errorCallback(response){
+		function errorCallback(err){
 			if(err)
 				err()
 		})
@@ -29,7 +29,7 @@ app.factory('dataService', function($http){
 		then(function successCallback(response){
 			success(response)
 		},
-		function errorCallback(response) {
+		function errorCallback(err) {
 			if(err)
 				err()
 		})

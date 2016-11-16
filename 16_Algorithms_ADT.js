@@ -104,6 +104,7 @@
 	names.append({name:"David", value:"Student"})
 	names.append({name:"Chris", value:"Student"})
 	names.append({name:"Shone", value:"Student"})
+	names.find({name:"Shone"})
 
 // for(names.front(); names.currPos() < names.length(); names.next()){
 // 	console.log(names.getElement())
