@@ -123,7 +123,7 @@ BST.prototype = {
 				return node.left
 			}
 			// node has two children
-			var tempNode = this.getMin(node.right)
+			var tempNode = node.right
 			node.data = tempNode.data
 			node.right = this.removeNode(node.right, tempNode.data)
 			return node
@@ -142,6 +142,7 @@ BST.prototype = {
             childCount,
             replacement,
             replacementParent;
+        if(this.contains(value)){found = true}
         //find the node (removed for space)
         //only proceed if the node was found
         if (found){
@@ -250,7 +251,80 @@ BST.prototype = {
     },
     toString: function(){
     	return this.toArray().toString()
-    }
+    },
+    // Check if tree is balanced
+/**
+ * Determines the minimum depth of a binary tree node.
+ *
+ * @param {BinaryTreeNode} node The node to check.
+ * @return The minimum depth of a binary tree node.
+ */
+	minDepth: function(node){
+		if(node === null){
+			return 0
+		}
+		return 1 + Math.min(this.minDepth(node.left), this.minDepth(node.right))
+	},
+
+/**
+ * Determines the maximum depth of a binary tree node.
+ *
+ * @param {BinaryTreeNode} node The node to check.
+ * @return The maximum depth of a binary tree node.
+ */
+	maxDepth: function(node){
+		if(node === null){
+			return 0
+		}
+		return 1 + Math.max(this.maxDepth(node.left), this.maxDepth(node.right))
+	},
+
+/**
+ * Determines whether a binary tree is balanced.
+ *
+ * @param {BinaryTreeNode} root The root of the tree.
+ * @returns Whether the tree is balanced.
+ */
+	isBinaryTreeBalanced: function(root){
+		if(root === null){
+			return null
+		}
+		return this.maxDepth(root) - this.minDepth(root) <= 1
+	},
+	sortedArrayToBalanced: function(arr){
+		var that = this
+		if(a == undefined){
+			var a = []
+			a.push(arr)
+		}
+		if(a[0].length>0){
+			for(var i = 0;i<a.length;){
+				var left = [],right = []
+				left = a[i].slice(0, Math.floor(a[i].length/2))
+				right = a[i].slice(Math.floor(a[i].length/2+1), a[i].length)
+				that.insert(a[i][Math.floor(a[i].length/2)])
+				a.shift()
+				if(left.length > 2){
+					a.push(left)
+				}else if(left.length <= 2){
+					left.forEach(function(item,index){
+						that.insert(item)
+					})
+					left = []
+				}
+				if(right.length > 2){
+					a.push(right)
+				}else if(right.length <=2){
+					right.forEach(function(item,index){
+						that.insert(item)
+					})
+					right = []
+				}						
+			}
+			this.sortedArrayToBalanced(a)
+		}	
+		return true	
+	}
 }
 
 
@@ -287,8 +361,5 @@ function postOrder(node) {
 		console.log(node.show() + " ");
 	}
 }
-
-// BTS Searches
-// Searhcing Min and Max
 
 
