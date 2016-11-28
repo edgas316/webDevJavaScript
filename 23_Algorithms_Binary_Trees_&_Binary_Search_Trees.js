@@ -291,15 +291,15 @@ BST.prototype = {
 		}
 		return this.maxDepth(root) - this.minDepth(root) <= 1
 	},
-	sortedArrayToBalanced: function(arr){
+	sortedArrayToBalanced: function(arr){ // max array length with good performance 300,000.00 - or 500,000.00 with significant slowdown - if more stack overflows...
 		var that = this
 		if(a == undefined){
 			var a = []
 			a.push(arr)
 		}
 		if(a[0].length>0){
-			for(var i = 0;i<a.length;){
-				var left = [],right = []
+			for(let i = 0;i<a.length;){
+				let left = [],right = []
 				left = a[i].slice(0, Math.floor(a[i].length/2))
 				right = a[i].slice(Math.floor(a[i].length/2+1), a[i].length)
 				that.insert(a[i][Math.floor(a[i].length/2)])
