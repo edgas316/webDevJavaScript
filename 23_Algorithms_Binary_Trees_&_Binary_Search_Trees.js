@@ -321,7 +321,7 @@ BST.prototype = {
 					right = []
 				}						
 			}
-			this.sortedArrayToBalanced(a)
+			return that.sortedArrayToBalanced(a)
 		}	
 		return true	
 	}
