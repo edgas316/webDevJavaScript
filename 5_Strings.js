@@ -128,13 +128,12 @@ function validateMessage(lower, upper, input){
     console.log(isolatedLowerValid)    
     console.log(mixed)
     console.log(invalid)
-    console.log(validMessage)
-
-
-    if(~item.indexOf('string')){
-        console.log('do something')
-    }
+    console.log(validMessage)    
 }
+
+// if(~item.indexOf('string')){
+//     console.log('do something')
+// }
 
 function isPalindrom(str){
     var string = str.toLowerCase().replace(/[^a-zA-Z0-9]+/g,'')
@@ -144,4 +143,69 @@ function isPalindrom(str){
             return false
     return true    
 }
+// ============================================
+// find if parentheses are balanced
+var findIfBalanced = function(str){
+    var pattern = "(){}[]"
+    var len = str.length/2
+    var bul
+    if(str.length % 2 != 0){
+        return false
+    }else{
+        for(var i = 0; i<len; i++){
+            if(pattern[pattern.indexOf(str[i]) + 1] !== str[str.length - i - 1]){
+                bul = false
+                break
+            }else{
+                bul = true
+            }
+        }
+    }
+    return bul  
+}
 
+// Better way
+function parenthesesAreBalanced(string) {
+    var parentheses = "[]{}()",
+        stack = [],
+        i, character, bracePosition;
+
+    for(i = 0; character = string[i]; i++) {
+        bracePosition = parentheses.indexOf(character);
+        if(bracePosition === -1) {
+            continue;
+        }
+        if(bracePosition % 2 === 0) {
+            stack.push(bracePosition + 1); // push next expected brace position
+        }else{
+            if(stack.pop() !== bracePosition) {
+                return false;
+            }
+        }
+    }
+    return stack.length === 0;
+}
+
+
+function findIfBalanced(str){
+    var par = "[]{}()",
+        stack = [],
+        i, 
+        character, 
+        bracePosition
+
+        for(i = 0; character = str[i]; i++){
+            bracePosition = par.indexOf(character)
+            if(bracePosition == -1){
+                continue
+            }
+            if(bracePosition % 2 === 0){
+                stack.push(bracePosition + 1)
+            }else{
+                if(stack.pop() !== bracePosition){
+                    return false
+                }
+            }
+        }
+        return stack.length === 0
+}
