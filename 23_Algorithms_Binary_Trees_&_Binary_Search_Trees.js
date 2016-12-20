@@ -297,9 +297,10 @@ BST.prototype = {
 			var a = []
 			a.push(arr)
 		}
-		if(a[0].length>0){
+		// if(a[0].length>0){
+			var left = [],right = []
 			for(let i = 0;i<a.length;){
-				let left = [],right = []
+				// let left = [],right = []
 				left = a[i].slice(0, Math.floor(a[i].length/2))
 				right = a[i].slice(Math.floor(a[i].length/2+1), a[i].length)
 				that.insert(a[i][Math.floor(a[i].length/2)])
@@ -321,8 +322,8 @@ BST.prototype = {
 					right = []
 				}						
 			}
-			return that.sortedArrayToBalanced(a)
-		}	
+			// return that.sortedArrayToBalanced(a)
+		// }	
 		return true	
 	}
 }

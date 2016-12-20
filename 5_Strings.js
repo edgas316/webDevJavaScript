@@ -186,26 +186,3 @@ function parenthesesAreBalanced(string) {
     return stack.length === 0;
 }
 
-
-function findIfBalanced(str){
-    var par = "[]{}()",
-        stack = [],
-        i, 
-        character, 
-        bracePosition
-
-        for(i = 0; character = str[i]; i++){
-            bracePosition = par.indexOf(character)
-            if(bracePosition == -1){
-                continue
-            }
-            if(bracePosition % 2 === 0){
-                stack.push(bracePosition + 1)
-            }else{
-                if(stack.pop() !== bracePosition){
-                    return false
-                }
-            }
-        }
-        return stack.length === 0
-}

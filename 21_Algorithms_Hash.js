@@ -6,6 +6,7 @@ function HashTable() {
 	this.put = put;
 	this.get = get;
 	this.buildChains = buildChains
+	this.values = [];
 }
 // function put(data) {
 // 	var pos = this.betterHash(data);
@@ -22,16 +23,16 @@ function simpleHash(data) {
 function showDistro() {
 	var n = 0;
 	for (var i = 0; i < this.table.length; ++i) {
-		if (this.table[i] != undefined) {
+		if (this.table[i][0] != undefined) {
 			console.log(i + ": " + this.table[i]);
 		}
 	}
 }
 function betterHash(string) {
-	const H = Math.random() * Math.floor(Math.random());
+	const H = 37;
 	var total = 0;
 	for (var i = 0; i < string.length; ++i) {
-		total += (H * total + string.charCodeAt(i) * Math.random()) * (Math.random() + 1);
+		total += H * total + string.charCodeAt(i);
 	}
 	total = total % this.table.length;
 	if (total < 0) {
@@ -84,13 +85,51 @@ hTable.showDistro();
 
 
 // Storing and Retrieving Data in a Hash Table
-function put(key, data){
-	var pos = this.betterHash(key)
-	this.table[pos] = data
+// function put(key, data){
+// 	var pos = this.betterHash(key)
+// 	var index = 0
+// 	if(this.table[pos][index] == undefined){
+// 		this.table[pos][index+1] = data
+// 		++index;
+// 	}
+	
+// 	else{
+// 		while(this.table[pos][index] != undefined){
+// 			++index
+// 		}
+// 		this.table[pos][index]
+// 	}
+// }
+
+function put(key, data) {
+	var pos = this.betterHash(key);
+	if(this.table[pos] == undefined){
+		this.table[pos] = key;
+		this.values[pos] = data;
+	}else{
+		while (this.table[pos] != undefined){
+			pos++;
+		}
+		this.table[pos] = key;
+		this.values[pos] = data;
+	}
 }
 
-function get(key){
-	return this.table[this.betterHash(key)]
+// function get(key){
+// 	return this.table[this.betterHash(key)]
+// }
+
+function get(key) {
+	var hash = -1;
+	hash = this.betterHash(key);
+	if (hash > -1) {
+		for (var i = hash; this.table[hash] != undefined; i++) {
+			if (this.table[i] == key) {
+				return this.values[hash];
+			}
+		}
+	}
+	return undefined;
 }
 
 
