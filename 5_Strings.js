@@ -173,7 +173,7 @@ function parenthesesAreBalanced(string) {
     for(i = 0; character = string[i]; i++) {
         bracePosition = parentheses.indexOf(character);
         if(bracePosition === -1) {
-            continue;
+            return false;
         }
         if(bracePosition % 2 === 0) {
             stack.push(bracePosition + 1); // push next expected brace position
