@@ -33,11 +33,9 @@ function dynFib(n){
 function iterFib(n){
 	if(n == 0){
 		return n
-	}
-	var last = 1,
-		next = 1,
-		result = 1
-	for(var i = 2; i < n; ++i){
+	}	
+	let [last, next, result] = [1,1,1]
+	for(let i = 2; i < n; ++i){
 		result = last + next
 		next = last
 		last = result
