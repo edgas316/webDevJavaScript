@@ -7,6 +7,16 @@ Array.prototype.asyncPrintArray = function () {
     }.bind(this))(i)
   }
 };
+// OR
+Array.prototype.asyncPrintArrayNoBind = function(){
+	for(var i = 0; i < this.length; ++i){
+		((j)=>{
+			setTimeout(() => {
+				console.log(this[j])
+			})
+		})(i)
+	}
+}
 
 //==================================================
 //Bind
