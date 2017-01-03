@@ -145,3 +145,14 @@ function getUserInput(firstName, lastName, callback, callbackObj){
 getUserInput ("Barack", "Obama", clientData.setUserName, clientData);
 // the fullName property on the clientData was correctly set​
 console.log (clientData.fullName); // Barack Obama​
+//======================================
+
+function foo(one, two, three){
+	console.log(two)
+}
+
+var arr = [1,2,3]
+
+foo(arr)// gives undefind
+//but
+foo.apply(null, arr)// logs 2

@@ -297,9 +297,13 @@ BST.prototype = {
 			var a = []
 			a.push(arr)
 		}
+		if(count == undefined){
+			var count = 0
+		}
 		// if(a[0].length>0){
 			var left = [],right = []
 			for(let i = 0;i<a.length;){
+				count+=1
 				// let left = [],right = []
 				left = a[i].slice(0, Math.floor(a[i].length/2))
 				right = a[i].slice(Math.floor(a[i].length/2+1), a[i].length)
@@ -324,7 +328,7 @@ BST.prototype = {
 			}
 			// return that.sortedArrayToBalanced(a)
 		// }	
-		return true	
+		return count	
 	}
 }
 

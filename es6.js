@@ -4,7 +4,7 @@ const PI = 3.141593
 let a = [1,2,3,4]
 
 for(let i = 0; i < a.length; i++){
-	let a = a[i]
+	let a = a[i] // Uncaught ReferenceError: a is not defined
 	console.log(a)
 }
 
