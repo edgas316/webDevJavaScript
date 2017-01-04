@@ -186,3 +186,28 @@ function parenthesesAreBalanced(string) {
     return stack.length === 0;
 }
 
+
+function isAnagram(a,b){
+    let str1 = a.toLowerCase().replace(/[^a-zA-Z0-9]+/g,''),
+        str2 = b.toLowerCase().replace(/[^a-zA-Z0-9]+/g,'')
+    if(str1.length !== str2.length){
+        return false
+    }
+    function strToObj(str){
+        let o = {}
+        for(let i = 0; i < str.length; ++i){
+            o[str[i]] = str[i]
+        }
+        return o
+    }
+    let obj1 = strToObj(str1),
+        obj2 = strToObj(str2)
+    for(prop in obj1){
+        if(obj1[prop] !== obj2[prop]){
+            return false
+        }
+    }
+    return true
+}
+
+
