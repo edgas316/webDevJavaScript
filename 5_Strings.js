@@ -196,18 +196,29 @@ function isAnagram(a,b){
     function strToObj(str){
         let o = {}
         for(let i = 0; i < str.length; ++i){
-            o[str[i]] = str[i]
+            if(!o[str[i]]){                
+                o[str[i]] = {}
+                o[str[i]][str[i]] = str[i]
+                o[str[i]].length = 1
+            }else{
+                o[str[i]].length +=1
+            }            
         }
         return o
     }
     let obj1 = strToObj(str1),
         obj2 = strToObj(str2)
+    if(Object.keys(obj1).length !== Object.keys(obj2).length){
+        return false
+    }
     for(prop in obj1){
-        if(obj1[prop] !== obj2[prop]){
+        if(obj1[prop][prop] !== obj2[prop][prop] || obj1[prop].length !== obj2[prop].length){
             return false
         }
     }
     return true
 }
+
+
 
 
