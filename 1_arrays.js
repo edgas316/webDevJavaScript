@@ -239,3 +239,49 @@ function findAverage(arr, total, average){
 
 findAverage(grades, total, average)
 
+var myltiLayerArray = [1,2,[3,4], {a:1, b:2}, 6, [7, [[8]]]]
+
+function flatten(a){
+    var arr = []
+    a.forEach(function(i){
+        if(Object.prototype.toString.call(i) !== "[object Array]"){
+            arr.push(i)
+        }else{
+            if(Object.prototype.toString.call(i) === "[object Array]"){
+                (function recur(x){
+                    if(Object.prototype.toString.call(x) === "[object Array]") {
+                    x.forEach(function(j){
+                        recur(j)
+                    })}
+                    else if(Object.prototype.toString.call(x) !== "[object Array]"){
+                        arr.push(x)
+                    }
+                }(i))
+            }
+        }
+    })
+    console.log(arr)
+}
+
+flatten(Input)
+
+function flatt(array, mutable) {
+  var nodes = (mutable && array) || array.slice(); // return a new array.
+  var flattened = [];
+
+  for (var node = nodes.shift(); node !== undefined; node = nodes.shift()) {
+    if (Array.isArray(node)) {
+      nodes.unshift.apply(nodes, node);
+    } else {
+      flattened.push(node);
+    }
+  }
+
+  console.log(flattened) ;
+}
+
+flatt(Input)
+
+const flattenFast = arr => arr.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
+
+flattenFast(Input)
