@@ -314,3 +314,25 @@ function countOccurances(arr){
 } 
 
 countOccurances(names)
+
+
+// Searching throuhg arrays of contanind in objects contained in array
+function extractDataFromArrayObjectArray(inputArray, searchBy , outputArray){
+    if(!outputArray)
+        outputArray = []
+    if(!inputArray || !inputArray[0][searchBy] || !Array.isArray(inputArray[0][searchBy]))
+        return "Please provide valid array of objects"
+    return inputArray.reduce(function(prev, curr){
+        return [...prev, ...curr[searchBy]]
+    }, [])
+}
+
+var friends = [ 
+    { name: "Anna", books: ["Bible", "Harry Potter"], age: 21 }, 
+    { name: "Bob", books: ["War and peace", "Romeo and Juliet"], age: 26 },
+    { name: "Alice", books: ["The Lord of the Rings", "The Shining"], age: 18 }
+]
+
+var searchable = 'books'
+var res = extractDataFromArrayObjectArray(friends, searchable)
+console.log(res) // ["Bible", "Harry Potter", "War and peace", "Romeo and Juliet", "The Lord of the Rings", "The Shining"]
