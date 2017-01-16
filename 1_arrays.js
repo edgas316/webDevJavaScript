@@ -239,7 +239,7 @@ function findAverage(arr, total, average){
 
 findAverage(grades, total, average)
 
-var myltiLayerArray = [1,2,[3,4], {a:1, b:2}, 6, [7, [[8]]]]
+var Input = [1,2,[3,4], {a:1, b:2}, 6, [7, [[8]]]]
 
 function flatten(a){
     var arr = []
@@ -285,3 +285,32 @@ flatt(Input)
 const flattenFast = arr => arr.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
 
 flattenFast(Input)
+
+function flattenEs5(arr){
+    return arr.reduce(function(a,b){
+        return a.concat(Array.isArray(b) ? flattenEs5(b) : b)
+    }, [])
+}
+
+var flattArray = flattenEs5(Input)
+console.log(flattArray)
+
+// Counting occurences
+var names = ["Alice", "Bob", "Tiff", "Bruce", "Alice"]
+function countOccurances(arr){
+    function add(a, i){
+        a.position.push(i)
+        a.occurences++
+    }
+    return arr.reduce(function(allNames, name, index){        
+        if(allNames[name] && allNames[name].name == name){
+            add(allNames[name], index)            
+        }else{
+            allNames[name] = {name:name, position:[], occurences:0}
+            add(allNames[name], index)            
+        }
+        return allNames
+    }, {})
+} 
+
+countOccurances(names)

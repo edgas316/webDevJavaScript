@@ -82,7 +82,7 @@ var createXHR = (function(){
 })();
 
 // Function Binding
-/*
+
     var handler = {
         message:"Event handled",
         handleClick:function(event){
@@ -91,7 +91,7 @@ var createXHR = (function(){
     }
     var btn = document.getElementById("my-btn")
     EventUtil.addHandler(btn, "click", handler.handleClick.bind(handler))
-*/
+
 
 // Functiont Currying
 function curry(fn){

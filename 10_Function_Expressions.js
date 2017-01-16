@@ -76,9 +76,11 @@ mjID.setID(567)
 console.log(mjID.getID())// 567
 // ========================================
 function celebrityIDCreator(theCelebrities){
-    var i;
-    var uniqueID = 100
-    for(i=0; i<theCelebrities.length; i++){
+    var i, 
+        uniqueID = 100, 
+        len = theCelebrities.length
+    
+    for(i=0; i<len; i++){
         console.log(i)
         theCelebrities[i]["id"] = function(j){
             return function(){
