@@ -344,7 +344,7 @@ console.log(res) // ["Bible", "Harry Potter", "War and peace", "Romeo and Juliet
 
 var input =  [['LON', 'PAR'], ['SFO', 'NYC'], ['LAX', 'SFO'], ['NYC', 'LON']]
 
-function sortDestination (inputArray){
+function sortDestination (inputArray){ // Three pass
     var len = inputArray.length, i, m = {}; n={}, arr = [], i, count = 0
     
     for(i = 0; i<len; ++i){
@@ -364,6 +364,24 @@ function sortDestination (inputArray){
     }
     return arr
 }
+
+function sortDestinationOnLogn(tickets){ // O(NLogN)
+    var arr = tickets
+
+    function help(value1,value2){
+        if(value1[1] !== value2[0]){
+            return 1
+        }else if(value1[1] === value2[0]){
+            return -1
+        }else{
+            return 0
+        }   
+    }
+    return arr.sort(help)     
+}
+
+var input =  [['LON', 'PAR'], ['SFO', 'NYC'], ['LAX', 'SFO'], ['NYC', 'LON'], ['YRV', 'LAX']]
+
 
 
 
