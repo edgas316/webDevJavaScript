@@ -336,3 +336,42 @@ var friends = [
 var searchable = 'books'
 var res = extractDataFromArrayObjectArray(friends, searchable)
 console.log(res) // ["Bible", "Harry Potter", "War and peace", "Romeo and Juliet", "The Lord of the Rings", "The Shining"]
+
+
+
+
+
+
+var input =  [['LON', 'PAR'], ['SFO', 'NYC'], ['LAX', 'SFO'], ['NYC', 'LON']]
+
+function sortDestination (inputArray){
+    var len = inputArray.length, i, m = {}; n={}, arr = [], i, count = 0
+    
+    for(i = 0; i<len; ++i){
+        m[inputArray[i][0]] = inputArray[i][1]
+        n[inputArray[i][1]] = inputArray[i][0]
+    }
+    
+    for(prop in m){
+        if(n[prop] === m[n[prop]]){
+            arr.push([prop, m[prop]])
+        }
+    }  
+    
+    for(i = 1; i<inputArray.length; ++i){
+        arr[i] = [arr[count][1] ,m[arr[count][1]]]
+        count++
+    }
+    return arr
+}
+
+
+
+
+
+
+
+
+
+
+
