@@ -213,8 +213,25 @@ console.log(exper.colors)// ["red", "blue", "green", "black"]
 console.log(Object.prototype.isPrototypeOf(exper))// true
 
 
+// Composition / Concatinative Inheritance
 
+var compose = function(f,g){
+    return function(x){
+        return g(f(x))
+    }
+}
 
+var add1 = function(a){
+    return a + 1
+}
+
+var times2 = function(a){
+    return a * 2
+}
+
+var add1OfTimes2 = compose(add1, times2)
+// Or ES6
+const _compose = (f, g) => (x) => g(f(x))
 
 
 
