@@ -232,9 +232,10 @@ var times2 = function(a){
 var add1OfTimes2 = compose(add1, times2)
 // Or ES6
 const _compose = (f, g) => (x) => g(f(x))
-
-
-
+const add1 = (a) => a + 1
+const times2 = (a) => a * 2
+const add1OfTimes2 = compose(add1, times2)
+add1OfTimes2(5) // => 11
 
 
 
