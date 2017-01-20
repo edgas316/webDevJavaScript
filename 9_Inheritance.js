@@ -212,7 +212,7 @@ console.log(exper1.colors)// ["red", "blue", "green"]
 console.log(exper.colors)// ["red", "blue", "green", "black"]
 console.log(Object.prototype.isPrototypeOf(exper))// true
 
-
+//==================================================================
 // Composition / Concatinative Inheritance
 
 var compose = function(f,g){
@@ -234,18 +234,121 @@ var add1OfTimes2 = compose(add1, times2)
 const _compose = (f, g) => (x) => g(f(x))
 const add1 = (a) => a + 1
 const times2 = (a) => a * 2
-const add1OfTimes2 = compose(add1, times2)
-add1OfTimes2(5) // => 11
+const add1OfTimes2 = _compose(add1, times2)
+add1OfTimes2(5) // => 12
 
 
+function getId(empid){
+    return {
+        empid:empid
+    }
+}
 
+function getInfo(firstName, lasName){
+    return {
+        firstName:firstName,
+        lasName:lasName
+    }
+}
 
+function createPerson(fn, ln){ // this is composition function
+    return {
+        getInfo: function(){return getInfo(fn, ln)}
+    }
+}
 
+function createEmployee(fn, ln, empid){ // this is composition function
+    return {
+        firstName:fn,
+        lasName: ln,
+        getId: function(){return getId(empid)},
+        getInfo: function(){return getInfo(fn, ln)}
+    }
+}
 
+var e2 = createEmployee('Edwin', 'Gasparian', 316)
+//========================================================
+// Composition with ES6
+const distortion = {distortion: 1}
+const volume = {volume:1}
+const cabinet = {cabinet: 'Maple'}
+const lowCut = {lowCut:1}
+const inputLevel = {inputLevel:1}
 
+const GuitarAmp = (options) => {
+    return Object.assign({}, distortion, volume, cabinet, options)
+}
 
+const BassAmp = (options) => {
+    return Object.assign({}. lowCut, volume, cabinet, options)
+}
 
+const ChannelStrip = (options) => {
+    return Object.assign({}, inputLevel, lowCut, volume, options)
+}
 
+// Test scripts
+test('GuitarAmp', assert => {
+    const msg = 'should have distortion, volume, and cabinet'
+    const level = 2
+    const cabinet = 'vintage'
+
+    const actual = GuitarAmp({
+        distortion: level,
+        volume: level,
+        cabinet
+    })
+
+    const expected = {
+        distortion: level,
+        volume: level,
+        cabinet
+    }
+
+    assert.deepEqual(actual, expected, msg)
+    assert.end()
+})
+
+test('BassAmp', assert => {
+    const msg = 'should have lowCut, volume, and cabinet'
+    const level = 2
+    const cabinet = 'vintage'
+
+    const actual = BassAmp({
+        lowCut: level,
+        volume: level,
+        cabinet
+    })
+
+    const expected = {
+        lowCut: level,
+        volume: level,
+        cabinet
+    }
+
+    assert.deepEqual(actual, expected, msg)
+    assert.end()
+})
+
+test('ChannelStrip', assert => {
+    const msg = 'should have inputLevel, lowCut, and volume'
+    const level = 2,
+
+    const actual = ChannelStrip({
+        inputLevel: level,
+        lowCut: level,
+        volume: level
+    })
+
+    const expected = {
+        inputLevel: level,
+        lowCut: level,
+        volume: level
+    }
+
+    assert.deepEqual(actual, expected, msg)
+    assert.end()
+})
 
 
 
