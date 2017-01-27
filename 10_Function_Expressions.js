@@ -13,6 +13,18 @@ var anotherFactorial = factorial;
 factorial = null;
 console.log(anotherFactorial(5));// error!
 
+function factorialIter(num){
+    var res = 1
+    if(num <=1){
+        return 1
+    }else{
+        for(var i = num; i > 1; --i){        
+            res *= i
+        }
+        return res
+    }
+}
+
 // === Closures === \\
 // The terms anonymous functions and closures are often incorrectly used interchangeably. Closures
 // are functions that have access to variables from another function’s scope. This is often accomplished

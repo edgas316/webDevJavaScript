@@ -237,7 +237,7 @@ const times2 = (a) => a * 2
 const add1OfTimes2 = _compose(add1, times2)
 add1OfTimes2(5) // => 12
 
-
+// one more example
 function getId(empid){
     return {
         empid:empid
