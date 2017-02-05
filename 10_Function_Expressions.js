@@ -317,7 +317,28 @@ var singletonAugment = function(){
 var newCust
 console.log(singletonAugment)
 
+//===========================
+// throttlse function
+function throttle(callback, time){
+    var n = null
+    return function(){
+        if(n === null){
+            n = Date.now();
+            callback()
+            setTimeout(function(){
+                n = null
+            }, time)
+        }       
+    }
+}
 
+function doAjax() {
+// DO ajax
+}
+
+var throttledAjax = throttle(ajax, 1000)
+$button.click(throttledAjax);
+//============================
 
 
 
