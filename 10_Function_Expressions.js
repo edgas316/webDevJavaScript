@@ -339,8 +339,30 @@ function doAjax() {
 var throttledAjax = throttle(ajax, 1000)
 $button.click(throttledAjax);
 //============================
-
-
+// turn negative to positive and vise versa 
+function turnIntegerToPositiveOrNegative(n, toNegative){
+    //check if n is negative
+    var num
+    if(n && n < 0){
+        num = ~n + 1
+    }else if(toNegative && toNegative > 0){
+        num = ~n + 1
+    }else{
+        num = n
+    }
+    return num
+}
+// or
+var num = -120
+num = Math.abs(num)// will alwais give positive
+// or
+num = num * -1 // will aswais convert to negative or positive
+//usage
+var negative = -120
+var positive = 200
+turnIntegerToPositiveOrNegative(negative)// returns 120
+turnIntegerToPositiveOrNegative(positive, false)// returns 200
+turnIntegerToPositiveOrNegative(positive, true)// returns -200
 
 
 
