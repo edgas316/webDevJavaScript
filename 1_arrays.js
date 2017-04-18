@@ -382,11 +382,53 @@ function sortDestinationOnLogn(tickets){ // O(NLogN)
 
 var input =  [['LON', 'PAR'], ['SFO', 'NYC'], ['LAX', 'SFO'], ['NYC', 'LON'], ['YRV', 'LAX']]
 
+// Find and remove Duplicate in array
+var ar = [9, 9, 111, 2, 3, 4, 4, 5, 7];
+
+function removeDuplicate(arr){
+    let tempArr = []
+    let map = {}
+    let len = arr.length
+    for(let i = 0; i < len; ++i){
+        if(arr[i] !== map[arr[i]]){
+            tempArr.push(arr[i])
+            map[arr[i]] = arr[i]
+        }
+    }
+    return tempArr
+}
+
+// rmeove duplicate in array of object ES6 Set()
+var family = [
+    { name: "Mike",     age: 10 },
+    { name: "Matt",     age: 13 },
+    { name: "Nancy",    age: 15 }, 
+    { name: "Adam",     age: 22 }, 
+    { name: "Jenny",    age: 85 }, 
+    { name: "Nancy",    age: 2  }, 
+    { name: "Carl",     age: 40 }
+];
+
+var unique = family.filter((set => f => !set.has(f.name) && set.add(f.name))(new Set));
+
+// ES6 in more readable way
+var unique = family.filter((set =>{
+    return f =>{
+        return !set.has(f.name) && set.add(f.name)
+    }
+})(new Set()))
+
+// set with ES5 syntax
+var unique = family.filter(function (set) {
+    return function (f) {
+        return !set.has(f.name) && set.add(f.name);
+    };
+}(new Set()));
 
 
 
-
-
+// or
+var unique = [...new Set(family.map(a => a.name))];// but this will create an array of strings
 
 
 
