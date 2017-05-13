@@ -113,7 +113,27 @@ var currieAdd2 = curry(add, 10, 12)
 console.log(currieAdd2())
 
 
+// =======================================
+// watch variable change
+Object.defineProperty(Object.prototype, 'watch', {
+    value: function(prop, handler){
+        var setter = function(val){
+            return val = handler.call(this, val);
+        };
+        Object.defineProperty(this, prop, {
+            set: setter
+        });
+    }
+});
 
+// usage 
+var obj = {};
+
+obj.watch('prop', function(value){
+    console.log('wow!',value);
+});
+
+obj.prop = 3;
 
 
 

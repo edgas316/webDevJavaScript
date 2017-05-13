@@ -12,7 +12,7 @@ promise.then(data => {
 	console.log(data)
 })
 
-const handleThirdPartyCallback = comeArgument => {
+const handleThirdPartyCallback = someArgument => {
 	let promise = new Promise((resolve, reject) => {
 		// assume some third-party API, that is *not* a Promise Object
 		// but fires a callback once finished
@@ -27,8 +27,8 @@ const handleThirdPartyCallback = comeArgument => {
 	return promise
 }
 
-handleThirdPartyCallback({user:101}).hten(data => {
-	console.log(data)
+handleThirdPartyCallback({user:101}).then(data => {
+	console.log(data)ß
 })
 
 // $q

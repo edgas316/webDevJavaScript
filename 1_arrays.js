@@ -167,6 +167,28 @@ arrDeepCopy(arr, arrCopy)
 arr[0] = 400
 console.log(arrCopy[0])
 
+var arr = ['hello', 'world', ["nested", "array"], {name: 'Ewin'}]
+var arrCopy = []
+
+// deep coopy if array contains objects
+function deepCopy(a, b){
+    for(var i = 0; i<a.length; i++){
+        if(typeof a[i] == 'object' && Object.prototype.toString.call(a[i]) != '[object Array]'){
+            b[i] = Object.assign({}, a[i])
+        }else{
+            b[i] = a[i]
+        }
+    }
+}
+
+deepCopy(arr, arrCopy)
+console.log(arrCopy)
+arr.push('how are you')
+arr[3].name = "John"
+console.log(arrCopy)
+
+
+// =======================
 // Acessor Functions
 var names = ["David", "Cynthia", "Raymond", "Clayton", "Jennifer"]
 var name = "David"
@@ -381,6 +403,36 @@ function sortDestinationOnLogn(tickets){ // O(NLogN)
 }
 
 var input =  [['LON', 'PAR'], ['SFO', 'NYC'], ['LAX', 'SFO'], ['NYC', 'LON'], ['YRV', 'LAX']]
+
+var obj = {
+    'LON':{
+        prev: 'LON',
+        next: 'PAR'
+    },
+    'PAR':{
+        prev: 'LON',
+        next: 'PAR'
+    },
+    'SFO':{
+        prev: 'SFO',
+        next: 'NYC'
+    },
+    ,
+    'NYC':{
+        prev: 'SFO',
+        next: 'NYC'
+    }
+}
+
+var arr = []
+
+var tempBefore = input[2][0]
+var tempAfter = input[2][1]
+if(tempBefore === obj[tempBefore]){
+    if(obj[tempBefore].)
+}else if(tempAfter === obj[tempAfter]){
+    if(obj[tempAfter].)
+}
 
 
 
