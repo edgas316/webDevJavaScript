@@ -280,7 +280,7 @@ const GuitarAmp = (options) => {
 }
 
 const BassAmp = (options) => {
-    return Object.assign({}. lowCut, volume, cabinet, options)
+    return Object.assign({}, lowCut, volume, cabinet, options)
 }
 
 const ChannelStrip = (options) => {
