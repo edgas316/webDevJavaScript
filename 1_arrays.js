@@ -170,8 +170,8 @@ console.log(arrCopy[0])
 var arr = ['hello', 'world', ["nested", "array"], {name: 'Ewin'}]
 var arrCopy = []
 
-// deep coopy if array contains objects
-function deepCopy(a, b){
+// shallow coopy if array contains objects
+function shallowCopy(a, b){
     for(var i = 0; i<a.length; i++){
         if(typeof a[i] == 'object' && Object.prototype.toString.call(a[i]) != '[object Array]'){
             b[i] = Object.assign({}, a[i])
@@ -180,6 +180,18 @@ function deepCopy(a, b){
         }
     }
 }
+
+// deep copy if array contains deep nested objects
+function deepCopy(a, b){
+    for(var i = 0; i<a.length; i++){
+        if(typeof a[i] == 'object' && Object.prototype.toString.call(a[i]) != '[object Array]'){
+            b[i] = JSON.parse(JSON.stringify(a[i]))
+        }else{
+            b[i] = a[i]
+        }
+    }
+}
+
 
 deepCopy(arr, arrCopy)
 console.log(arrCopy)

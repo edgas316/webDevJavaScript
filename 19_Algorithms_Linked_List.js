@@ -98,31 +98,20 @@ function LList() {
 	this.dispReverse = dispReverse;
 }
 
-function dispReverse(){
-	var currNode = this.head
-	currNode = this.findLast()
-	while(!(currNode == null)){
-		console.log(currNode.element)
-		currNode = currNode.previouse
-	}
+function insert(newElement, item){
+	var newNode = new Node(newElement)
+	var current = this.find(item)
+	newNode.next = current.next
+	newNode.previouse = current
+	current.next = newNode
 }
 
-function findLast(){
-	var currNode = this.head
-	while(!(currNode.next == null)){
-		currNode = currNode.next
+function find(item) {
+	var currNode = this.head;
+	while (currNode.element != item) {
+		currNode = currNode.next;
 	}
-	return currNode
-}
-
-function remove(item){
-	var currNode = this.find(item)
-	if (!(currNode.next == null)) {
-		currNode.previouse.next = currNode.next
-		currNode.next.previouse = currNode.previouse
-		currNode.next = null
-		currNode.previouse = null
-	}
+	return currNode;
 }
 
 function display() {
@@ -136,20 +125,31 @@ function display() {
 	return arr
 }
 
-function find(item) {
-	var currNode = this.head;
-	while (currNode.element != item) {
-		currNode = currNode.next;
+function remove(item){
+	var currNode = this.find(item)
+	if (!(currNode.next == null)) {
+		currNode.previouse.next = currNode.next
+		currNode.next.previouse = currNode.previouse
+		currNode.next = null
+		currNode.previouse = null
 	}
-	return currNode;
 }
 
-function insert(newElement, item){
-	var newNode = new Node(newElement)
-	var current = this.find(item)
-	newNode.next = current.next
-	newNode.previouse = current
-	current.next = newNode
+function findLast(){
+	var currNode = this.head
+	while(!(currNode.next == null)){
+		currNode = currNode.next
+	}
+	return currNode
+}
+
+function dispReverse(){
+	var currNode = this.head
+	currNode = this.findLast()
+	while(!(currNode == null)){
+		console.log(currNode.element)
+		currNode = currNode.previouse
+	}
 }
 
 var cities = new LList();
