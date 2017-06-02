@@ -55,3 +55,13 @@ getUTCMilliseconds()// Returns the UTC date’s milliseconds.
 setMilliseconds(milliseconds)// Sets the date’s milliseconds.
 setUTCMilliseconds(milliseconds)// Sets the UTC date’s milliseconds.
 getTimezoneOffset()// Returns the number of minutes that the local time zone is off set from UTC. For example, Eastern Standard Time returns 300. This value changes when an area goes into Daylight Saving Time.
+
+
+// get date from today
+function getWorkingDays(n){
+	var today = new Date();
+	var weeksEnds = Math.floor(n/7*2)
+	var givenDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + n + weeksEnds);
+
+	return givenDate
+}

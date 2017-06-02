@@ -497,6 +497,59 @@ var unique = [...new Set(family.map(a => a.name))];// but this will create an ar
 
 
 
+// find unique pairs
+function uniq(arr, n){
+    var map = {}, unique = [];
+    for(var i = 0; i<arr.length-1; i++){
+        for(var j = i+1; j<arr.length; j++){
+            if(arr[i] + arr[j] === n){
+                var temp = [arr[i], arr[j]].sort().toString();
+                if(!map[temp]){
+                    unique.push([arr[i], arr[j]])
+                }
+                map[temp] = temp
+            }
+        }
+    }
+    return {
+        uniqueArr: unique,
+        length: unique.length
+    }
+}
+
+
+//// Write two functions for a spreadsheet: getValue and setValue
+// Example usage:
+// setValue('A1', '1')
+// setValue('B1', '2')
+// setValue('C1', '=A1+B1')
+// getValue('A1') => 1
+// getValue('C1') => 3
+
+function sT(){};
+sT.prototype.setValue = function(a,b){
+    this[a] = b
+}
+
+sT.prototype.getValue = function(key){
+    var arr = [], num = 0, self = this;
+    if(~self[key].indexOf('=')){
+    arr = self[key].replace('=', "").split('+');
+        num = arr.reduce(function(a,b){
+      return a + self.getValue(b)
+    }, 0)
+    return num
+  } else {
+    return parseInt(self[key]);
+  }
+}
+
+var sheet = new sT()
+sheet.setValue('A1', '1')
+sheet.setValue('B1', '2')
+sheet.setValue('B2', '=A1+B1')
+sheet.setValue('C1', '=B2+B2')
+console.log(sheet.getValue('C1'))
 
 
 

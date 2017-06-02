@@ -94,3 +94,49 @@ function searchText(text, word){
 	}
 	return matchObj
 }
+
+// longest repeated substring
+var myarray = ['b','r','o','w','n',
+               'f','o','x',
+               'h','u','n','t','e','r',
+               'n','f','o','x',
+               'r','y','h','u','n'];
+
+function findLongestRepeatedSubstr(string){
+	var longestRepeated = "";
+
+	// i = current size of substring
+	// i loop runs string.length times;
+	// looks for large repeated substrings first
+	for (i = string.length; i > 0; i--) {
+	    
+	    
+	    // j = current beginning index of substring
+	    // j loop runs (string.length - substring.length + 1) times;
+	    // checks for repeat of subStr in
+	    // range (indexOf(subStr), whileCurrentSizeiStillFitsInString]
+	    for (j = 0; j < string.length - i; j++) {
+	        var subStr = string.substring(j, j + i);
+	        
+	        
+	        // if subStr is matched between indexOf(subStr) + 1 and
+	        // the end of the string, we're done here
+	        // (I'm not checking for multiple repeated substrings
+	        //  of the same length. Get over it.)
+	        if (string.indexOf(subStr, j + 1) != -1) {
+	            longestRepeated = subStr;
+	            break;
+	        }
+	    }
+	    if (longestRepeated.length) break;
+	}
+
+	if (longestRepeated.length) console.log("Longest repeated substring: " +
+	                                   subStr);
+	else console.log("Longest repeated substring is the whole string.");
+}
+
+var str = "cdecdecderetty";
+var str2 = "cdecdecceretty";
+
+

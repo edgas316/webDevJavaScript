@@ -54,3 +54,44 @@ function MyService($q){
 		}
 	}
 }
+// =====================================================
+// promices in action
+// load-image.js
+function loadImage(url){
+	return new Promise((resolve, reject) => {
+		let image = new Image()
+
+		image.onload = function(){
+			resolve(image)
+		}
+
+		image.onerror = function(){
+			let msg = "Couldn't load image at: " + url;
+			reject(new Error(msg))
+		}
+
+		image.src = url;
+	})
+}
+export default loadImage
+
+// usage
+// app.js
+import loadImage from './load-image'
+
+let addImg = (src) => {
+	let imgElement = document.createElement('img')
+	imgElement.src = src
+	document.body.appendChild(imgElement)
+}
+
+Promise.all([
+	loadImage('images/cat1.png'),
+	loadImage('images/cat2.png'),
+	loadImage('images/cat3.png')
+]).then((images) => {
+	images.forEach(img => addImg(img.src))
+}).catch((error) => {
+	// handle all errors here
+})
+
