@@ -316,7 +316,7 @@ function flatt(array, mutable) {
 
 flatt(Input)
 
-const flattenFast = arr => arr.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
+const flattenFast = arr => arr.reduce((a, b) => a.concat(Array.isArray(b) ? flattenFast(b) : b), []);
 
 flattenFast(Input)
 
