@@ -149,3 +149,31 @@ for (var i = 0; i < someNames.length; ++i) {
 	hTable.put(someNames[i], someNames[i]);
 }
 hTable.showDistro();
+
+//================
+String.prototype.hashCode = function(){
+    var hash = 0, i, c, slen = this.length;
+    if (this.length == 0) return hash;
+    for (i = 0; i < slen; i++) {
+        c = this.charCodeAt(i);
+        hash = ((hash<<5)-hash)+c;
+        hash &= hash; // Convert to 32bit integer
+  // or hash = hash & 0xffffffff
+  // or hash |= 0; // Convert to 32bit integer
+    }
+    return hash; 
+}
+//=================
+function hash(str) {
+  var hash = 5381,
+      i    = str.length;
+
+  while(i) {
+    hash = (hash * 33) ^ str.charCodeAt(--i);
+  }
+
+  /* JavaScript does bitwise operations (like XOR, above) on 32-bit signed
+   * integers. Since we want the results to be always positive, convert the
+   * signed int to an unsigned by doing an unsigned bitshift. */
+  return hash >>> 0;
+}

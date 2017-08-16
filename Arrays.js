@@ -201,7 +201,7 @@ console.log(arrCopy)
 
 
 // =======================
-// Acessor Functions
+// Accessor Functions
 var names = ["David", "Cynthia", "Raymond", "Clayton", "Jennifer"]
 var name = "David"
 

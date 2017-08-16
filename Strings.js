@@ -197,11 +197,9 @@ function isAnagram(a,b){
         let o = {}
         for(let i = 0; i < str.length; ++i){
             if(!o[str[i]]){                
-                o[str[i]] = {}
-                o[str[i]][str[i]] = str[i]
-                o[str[i]].length = 1
+                o[str[i]] = 1
             }else{
-                o[str[i]].length +=1
+                o[str[i]]+=1
             }            
         }
         return o
@@ -212,7 +210,7 @@ function isAnagram(a,b){
         return false
     }
     for(prop in obj1){
-        if(obj1[prop][prop] !== obj2[prop][prop] || obj1[prop].length !== obj2[prop].length){
+        if(!obj2[prop] || obj1[prop] !== obj2[prop]){
             return false
         }
     }

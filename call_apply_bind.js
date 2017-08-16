@@ -1,4 +1,4 @@
-Array.prototype.asyncPrintArray = function () {
+Array.prototype.asyncPrintArray = function() {
   for (var i = 0; i < this.length; i++ ) {
     (function(j) {
       setTimeout(function() {
@@ -22,7 +22,7 @@ Array.prototype.asyncPrintArrayNoBind = function(){
 //Bind
 // Bind fallback for older brousers
 // Credit to Douglas Crockford for this bind method​
-if (!Function.prototype.bind) {
+if(!Function.prototype.bind) {
 	Function.prototype.bind = function (oThis) {
 		if (typeof this !== "function") {
 			// closest thing possible to the ECMAScript 5 internal IsCallable function​
@@ -69,9 +69,9 @@ var user = {
         {name:"T. Woods", age:37},
         {name:"P. Mickelson", age:43}
     ],
-    showData:function (event) {
+    showData:function(event) {
         var randomNum = ((Math.random () * 2 | 0) + 1) - 1; // random number between 0 and 1​​
-        console.log (this.data[randomNum].name + " " + this.data[randomNum].age);
+        console.log(this.data[randomNum].name + " " + this.data[randomNum].age);
     }
 }
 // Assign the showData method of the user object to a variable​
@@ -79,8 +79,8 @@ var showDataVar = user.showData;
 showDataVar(); // Samantha 12 (from the global data array, not from the local data array)​
 
 // to fix this we have to use Bind
-var showDataVar = user.showData.bind (user);
-showDataVar (); // P. Mickelson 43
+var showDataVar = user.showData.bind(user);
+showDataVar(); // P. Mickelson 43
 
 // we can barrow the method 
 var cars = {
@@ -104,8 +104,8 @@ function greet(gender, age, name){
 var greetAtAdultMale = greet.bind(null, 'male', 36)
 greetAtAdultMale('Edwin')
 var greetAYoungster = greet.bind (null, "", 16);
-greetAYoungster ("Alex"); // "Hey, Alex."​
-greetAYoungster ("Emma Waterloo"); // "Hey, Emma Waterloo."​
+greetAYoungster("Alex"); // "Hey, Alex."​
+greetAYoungster("Emma Waterloo"); // "Hey, Emma Waterloo."​
 
 // Call method
 var avgScore = "Global avgScore"
@@ -142,9 +142,9 @@ function getUserInput(firstName, lastName, callback, callbackObj){
 }
 
 // The clientData object will be used by the Apply method to set the "this" value​
-getUserInput ("Barack", "Obama", clientData.setUserName, clientData);
+getUserInput("Barack", "Obama", clientData.setUserName, clientData);
 // the fullName property on the clientData was correctly set​
-console.log (clientData.fullName); // Barack Obama​
+console.log(clientData.fullName); // Barack Obama​
 //======================================
 
 function foo(one, two, three){
